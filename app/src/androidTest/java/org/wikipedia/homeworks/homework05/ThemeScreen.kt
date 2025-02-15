@@ -85,9 +85,7 @@ val readingFocusModeDescription = KTextView {
 val themeSettingCategory = KTextView {
     withText(R.string.color_theme_select)
     isInstanceOf(MaterialTextView::class.java)
-    withParent {
-        isInstanceOf(LinearLayout::class.java)
-    }
+
 }
 
 val lightTextThemeButton = KTextView {
