@@ -17,28 +17,30 @@ class SideLengthInRangeMatcher(
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("side length is between $min and $max")
+        description.appendText("side length should be between $min and $max")
     }
 }
 
 fun sideLengthInRange(min: Float, max: Float) = SideLengthInRangeMatcher(min, max)
 
-class CornerCountMatcher : TypeSafeMatcher<Shape>() {
+class CornerCountMatcher(
+    private val angleCount: Int
+) : TypeSafeMatcher<Shape>() {
     override fun matchesSafely(shape: Shape): Boolean {
         val sides = shape.numberOfSides
         return if (sides >=3) {
-            sides == sides
+            sides == angleCount
         } else {
             sides < 3
         }
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("number of corners equals to number of sides for shapes with 3+ sides, or 0 for lines")
+        description.appendText("number of corners should be equal to number of sides for shapes with 3+ sides, or 0 for lines")
     }
 }
 
-fun cornerCount() = CornerCountMatcher()
+fun cornerCount(angleCount: Int) = CornerCountMatcher(angleCount)
 
 class EvenSidesMatcher : TypeSafeMatcher<Shape>() {
     override fun matchesSafely(shape: Shape): Boolean {
@@ -46,7 +48,7 @@ class EvenSidesMatcher : TypeSafeMatcher<Shape>() {
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("shape has even number of sides")
+        description.appendText("shape should have even number of sides")
     }
 }
 
@@ -60,7 +62,7 @@ class ColorMatcher(
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("color is $color")
+        description.appendText("color should be $color")
     }
 }
 
@@ -72,7 +74,7 @@ class NoNegativeSideLengthMatcher : TypeSafeMatcher<Shape>() {
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("side length is positive")
+        description.appendText("side length should be positive")
     }
 }
 
@@ -84,7 +86,7 @@ class NoNegativeSideNumberMatcher : TypeSafeMatcher<Shape>() {
     }
 
     override fun describeTo(description: Description) {
-        description.appendText("number of sides is positive")
+        description.appendText("number of sides should be positive")
     }
 }
 
