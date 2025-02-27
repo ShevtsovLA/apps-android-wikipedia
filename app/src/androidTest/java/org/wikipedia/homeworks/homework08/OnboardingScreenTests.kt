@@ -26,20 +26,33 @@ class OnboardingScreenTests : TestCase() {
         }
     }
 
-    fun logoTest() {
+    @Test
+    fun logoTest1() {
         run {
-            var page = 0
-            repeat(numOfPage) {
                 step("Image is displayed") {
-                    OnboardingScreen.items.childAt<OnboardingScreenFirstItem>(page) {
+                    OnboardingScreen.items.childAt<OnboardingScreenFirstItem>(0) {
                         image.isDisplayed()
                     }
                 }
                 step("Next page") {
                     OnboardingScreen.forwardButton.click()
                 }
-                page++
+
+        }
+    }
+
+    @Test
+    fun logoTest2() {
+        run {
+            step("Image is displayed") {
+                OnboardingScreen.items.childAt<OnboardingScreenSecondItem>(0) {
+                    image.isDisplayed()
+                }
             }
+            step("Next page") {
+                OnboardingScreen.forwardButton.click()
+            }
+
         }
     }
 }

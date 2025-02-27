@@ -19,6 +19,7 @@ object ExploreScreen : KScreen<ExploreScreen>() {
             itemType(::CustomizeFeedItem)
             itemType(::TopReadItem)
             itemType(::InTheNewsItem)
+            itemType(::FeaturedArticleItem)
         }
     )
 

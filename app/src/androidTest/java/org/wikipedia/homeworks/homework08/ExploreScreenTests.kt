@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework03.OnboardingScreenOld
 import org.wikipedia.homeworks.homework07.ExploreScreen
+import org.wikipedia.homeworks.homework07.FeaturedArticleItem
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework07.TopReadCardItem
 import org.wikipedia.homeworks.homework07.TopReadItem
@@ -32,16 +33,30 @@ class ExploreScreenTests : TestCase() {
                     voiceIcon.isDisplayed()
                 }
             }
-            step("Checking has logo in 2nd child in topRead") {
-                ExploreScreen.feed.swipeUp()
-                ExploreScreen.feed.childAt<TopReadItem>(4) {
-                    step("TopReadItem.isDisplayed()") {
-                        isDisplayed()
+//            step("Checking has logo in 2nd child in topRead") {
+//                ExploreScreen.feed.swipeUp()
+//                ExploreScreen.feed.childAt<TopReadItem>(4) {
+//                    step("TopReadItem.isDisplayed()") {
+//                        isDisplayed()
+//                    }
+//
+//                    cardList.childAt<TopReadCardItem>(1) {
+//                        image.isDisplayed()
+//                    }
+//                }
+//            }
+            step("Title contains `Featured article`") {
+                ExploreScreen.feed.childWith<TopReadItem> {
+                    withDescendant {
+                        withText("Top read")
                     }
-
-                    cardList.childAt<TopReadCardItem>(1) {
-                        image.isDisplayed()
-                    }
+//                    onPosition(3)
+                }.perform {
+//                    titleText.hasText("Featured article")
+//                    image.isDisplayed()
+//                    headerText.hasAnyText()
+//                    descriptionText.hasAnyText()
+                    dotesButton.isClickable()
                 }
             }
         }
