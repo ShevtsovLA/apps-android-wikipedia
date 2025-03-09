@@ -256,6 +256,7 @@ dependencies {
     testImplementation libs.mockwebserver
     testImplementation libs.hamcrest
     testImplementation libs.room.testing
+    testImplementation("io.appium:java-client:8.5.0")
 
     androidTestImplementation libs.espresso.contrib
     androidTestImplementation libs.androidx.espresso.intents
