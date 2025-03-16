@@ -25,8 +25,9 @@ class DeviceTest: TestCase() {
     @Test
     fun deviceTest() {
         before {
-            device.network.disable()
+
         }.after {
+            device.network.enable()
             device.network.toggleWiFi(true)
             device.exploit.setOrientation(Exploit.DeviceOrientation.Portrait)
             device.language.switchInApp(Locale.ENGLISH)
@@ -71,11 +72,13 @@ class DeviceTest: TestCase() {
             }
             step("Выключить сеть, проверить отображение ошибки и кнопки Retry") {
                 device.network.toggleWiFi(false)
+                device.network.disable()
                 NewsStoryScreen.items.childAt<NewsCardItem>(1) {
                     cardTitleText.click()
                 }
                 if (device.uiDevice.findObject(UiSelector().text("Retry")).exists()) {
                     device.network.toggleWiFi(true)
+                    device.network.enable()
                     device.uiDevice.waitForIdle()
                     Thread.sleep(5000)
                     device.uiDevice.findObject(UiSelector().text("Retry")).click()
