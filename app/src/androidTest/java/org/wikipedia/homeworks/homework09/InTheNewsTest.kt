@@ -4,7 +4,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
-import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework03.OnboardingScreenOld
@@ -18,11 +17,6 @@ class InTheNewsTest : TestCase(Kaspresso.Builder.withForcedAllureSupport()) {
     @get: Rule
     val activityScenarioRule: ActivityScenarioRule<MainActivity> =
         ActivityScenarioRule(MainActivity::class.java)
-
-//    @After
-//    fun tearDown() {
-//        device.files.pull("/sdcard/Documents/allure-results", "app/build")
-//    }
 
     @Test
     fun simpleTest() {
